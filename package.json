@@ -1,0 +1,13 @@
+{
+  "name": "parking-lot-demo",
+  "version": "1.0.0",
+  "description": "Simple parking lot manager with camera capture and OCR placeholder",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

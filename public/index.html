@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Parking Lot Manager</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="hero">
+        <h1>Parking Lot Control</h1>
+        <p>Capture a plate, detect text (OCR placeholder), and track entries/exits instantly.</p>
+      </header>
+
+      <section class="panel capture-panel">
+        <h2>Camera Interface</h2>
+        <div class="camera-wrap">
+          <video id="camera" autoplay playsinline muted></video>
+          <canvas id="snapshot" width="640" height="360" hidden></canvas>
+        </div>
+        <img id="snapshotPreview" class="snapshot-preview" alt="Captured frame preview" hidden />
+        <div class="controls">
+          <button id="startCameraBtn" type="button">Start Camera</button>
+          <button id="captureBtn" type="button" disabled>Capture Plate</button>
+        </div>
+        <label class="manual-input" for="manualPlate">
+          Manual plate override (optional)
+          <input id="manualPlate" type="text" placeholder="e.g. ABC123" maxlength="12" />
+        </label>
+        <p class="hint">
+          If manual override is empty, backend OCR is used. To read real plates, configure
+          AZURE_VISION_ENDPOINT and AZURE_VISION_KEY in the server environment.
+        </p>
+      </section>
+
+      <section class="panel event-panel">
+        <h2>Last Event</h2>
+        <div id="eventLog" class="event-log">No activity yet.</div>
+      </section>
+
+      <section class="panel dashboard-panel">
+        <div class="dashboard-head">
+          <h2>Currently Parked Cars</h2>
+          <button id="refreshBtn" type="button" class="secondary">Refresh</button>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>License Plate</th>
+              <th>Entry Time</th>
+            </tr>
+          </thead>
+          <tbody id="activeTableBody">
+            <tr>
+              <td colspan="2" class="empty-state">No active cars.</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
